@@ -27,6 +27,8 @@ import usePlacesAutocomplete, {
   } from "@reach/combobox";
   import "@reach/combobox/styles.css";
 
+import mapStyle from './mapStyle';
+
 const API_KEY = "AIzaSyD6XbHQZ_VUZaNXSXAlu0Ufj8IM-07M9NY";
 
 const libraries = ["places"];
@@ -37,22 +39,30 @@ const mapContainerStyle = {
 };
 
 const center={
-    lat: 44.754100, 
-    lng: 19.467379
+    lat: 51.5028048, 
+    lng: -0.1136124
 };
 
 const options={
+    //styles: mapStyle,
     disableDefaultUI: true,
+    zoomControl: true
 }
 
-var isLoaded=false;
-var loadError=null;
+/*var isLoaded=false;
+var loadError=null;*/
 
+// ===================== MAPS_WINDOW ===========================================================
 const MapsWindow = () => {
-    ({isLoaded, loadError} = useLoadScript({
+    const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: API_KEY,
         libraries
-    }));
+    })
+
+    const mapRef = React.useRef();
+    const onMapLoad = React.useCallback((map)=>{
+        mapRef.current = map;
+    }, []);
 
     if(loadError) 
         return <h1>Error loading maps</h1>;
@@ -61,48 +71,54 @@ const MapsWindow = () => {
 
     return(
         <div>
-            <GoogleMap mapContainerStyle={mapContainerStyle}
-                        zoom = {5}
-                        center={center}
-                        options={options}>
-            </GoogleMap>
             <Search></Search>
+            <GoogleMap mapContainerStyle={mapContainerStyle}
+                        zoom={14}
+                        center={center}
+                        options={options}
+                        onLoad={onMapLoad}>
+            </GoogleMap>
         </div>
     );
 };
 
-const Search=()=>{
+function Search(){
     const {
         ready,
         value, 
         suggestions: {
             status,
-            data
+            data,
         },
         setValue,
         clearSuggestions
     } = usePlacesAutocomplete({
         requestOptions:{
             location: {lat: ()=>center.lat, lng: ()=> center.lng},
-            radius: 100*1000
+            radius: 10*1000
         }
     });
 
     console.log(ready,value);
 
-    return <Combobox onSelect={(addr)=>{
-        console.log(addr);
-    }}>
-        <ComboboxInput value={value}
-                        onChange={(event)=>{
-                            setValue(event.target.value);
-                        }}
-                        disabled={!ready}
-        />
-        <ComboboxPopover>
-            {status == "OK" && data.map(({id, desctiption})=> <ComboboxOption key={id} value={desctiption}/>)}
-        </ComboboxPopover>
-    </Combobox>;
+    return <Combobox onSelect={(address)=>{
+                                    console.log(address);
+                                }}>
+                <ComboboxInput value={value}
+                                onChange={(event)=>{
+                                    setValue(event.target.value);
+                                }}
+                                disabled={!ready}
+                                placeholder={"Enter address here"} />
+                <ComboboxPopover>
+                    {status === "OK" && data.map((test)=>{
+                        console.log(test);
+                        let place_id, description, rest;
+                        ({place_id, description, ...rest} = test);
+                        return <ComboboxOption key={place_id} value={description}/>;
+                    })}
+                </ComboboxPopover>
+            </Combobox>;
 }
 
 export {MapsWindow};
