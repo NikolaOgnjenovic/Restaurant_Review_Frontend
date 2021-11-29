@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -60,27 +61,41 @@ public class ReviewService {
         }
     }
 
-    public ReturnReviewDto likeReviewById(Long id) {
-        Optional<Review> optionalReview = ReviewRepository.findById(id);
+    public ReturnReviewDto likeReviewById(Long reviewId, Long userId) {
+        Optional<Review> optionalReview = ReviewRepository.findById(reviewId);
 
-        if(optionalReview.isPresent()) {
+        if (optionalReview.isPresent()) {
             Review savedReview = optionalReview.get();
-            savedReview.setLikes(savedReview.getLikes()+1);
+            savedReview.setLikes(savedReview.getLikes() + 1);
+
+            //Add the review's author id to the list of users who have liked the review
+            ArrayList<Long> newLikedByList = savedReview.getLikedBy();
+            if(newLikedByList == null) newLikedByList = new ArrayList<>();
+            newLikedByList.add(userId);
+            savedReview.setLikedBy(newLikedByList);
+
             return mapToDto(ReviewRepository.save(savedReview));
         } else {
-            throw new ReviewNotFound("Requested id not present [" + id + "]");
+            throw new ReviewNotFound("Requested id not present [" + reviewId + "]");
         }
     }
 
-    public ReturnReviewDto dislikeReviewById(Long id) {
-        Optional<Review> optionalReview = ReviewRepository.findById(id);
+    public ReturnReviewDto dislikeReviewById(Long reviewId, Long userId) {
+        Optional<Review> optionalReview = ReviewRepository.findById(reviewId);
 
-        if(optionalReview.isPresent()) {
+        if (optionalReview.isPresent()) {
             Review savedReview = optionalReview.get();
-            savedReview.setDislikes(savedReview.getDislikes()+1);
+            savedReview.setDislikes(savedReview.getDislikes() + 1);
+
+            //Add the review's author id to the list of users who have disliked the review
+            ArrayList<Long> newDislikedByList = savedReview.getDislikedBy();
+            if(newDislikedByList == null) newDislikedByList = new ArrayList<>();
+            newDislikedByList.add(userId);
+            savedReview.setDislikedBy(newDislikedByList);
+
             return mapToDto(ReviewRepository.save(savedReview));
         } else {
-            throw new ReviewNotFound("Requested id not present [" + id + "]");
+            throw new ReviewNotFound("Requested id not present [" + reviewId + "]");
         }
     }
 
@@ -101,7 +116,10 @@ public class ReviewService {
                 review.getDescription(),
                 review.getLikes(),
                 review.getDislikes(),
-                review.getFoodCost()
+                review.getFoodCost(),
+                review.getUserId(),
+                (review.getLikedBy() == null) ? new ArrayList<>() : review.getLikedBy(),
+                (review.getDislikedBy() == null) ? new ArrayList<>() : review.getDislikedBy()
         );
     }
 }

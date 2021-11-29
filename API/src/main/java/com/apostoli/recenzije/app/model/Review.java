@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -25,4 +26,7 @@ public class Review {
     @Column(columnDefinition = "integer default 0")
     private int dislikes;
     private int foodCost;
+    private Long userId;
+    private ArrayList<Long> likedBy;
+    private ArrayList<Long> dislikedBy;
 }

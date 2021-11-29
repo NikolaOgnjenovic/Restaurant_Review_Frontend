@@ -6,12 +6,14 @@ import com.apostoli.recenzije.app.model.Review;
 import com.apostoli.recenzije.app.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.util.Pair;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/reviews")
@@ -57,14 +59,14 @@ public class ReviewController {
         return reviewService.updateReviewById(id, ReviewUpdated);
     }
 
-    @PutMapping("/{id}/likeReviewById")
-    ReturnReviewDto likeReviewById(@PathVariable Long id) {
-        return reviewService.likeReviewById(id);
+    @PutMapping("/likeReviewById")
+    ReturnReviewDto likeReviewById(@RequestBody Pair<Long, Long> reviewAndUserId) {
+        return reviewService.likeReviewById(reviewAndUserId.getFirst(), reviewAndUserId.getSecond());
     }
 
-    @PutMapping("/{id}/dislikeReviewById")
-    ReturnReviewDto dislikeReviewById(@PathVariable Long id) {
-        return reviewService.dislikeReviewById(id);
+    @PutMapping("/dislikeReviewById")
+    ReturnReviewDto dislikeReviewById(@RequestBody Pair<Long, Long> reviewAndUserId) {
+        return reviewService.dislikeReviewById(reviewAndUserId.getFirst(), reviewAndUserId.getSecond());
     }
 
     @DeleteMapping("/{id}")

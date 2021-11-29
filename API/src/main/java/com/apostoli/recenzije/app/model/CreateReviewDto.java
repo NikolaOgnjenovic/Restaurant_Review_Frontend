@@ -1,6 +1,7 @@
 package com.apostoli.recenzije.app.model;
 
 import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
 
 public record CreateReviewDto(
         @NotBlank
@@ -9,6 +10,9 @@ public record CreateReviewDto(
         String description,
         int likes,
         int dislikes,
-        int foodCost
+        int foodCost,
+        Long userId,
+        ArrayList<Long> likedBy,
+        ArrayList<Long> dislikedBy
 ) {
 }
