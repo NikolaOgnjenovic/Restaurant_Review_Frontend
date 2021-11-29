@@ -1,0 +1,47 @@
+#header{
+    margin: 0;
+    padding: 0;
+    background-color: rgb(17, 17, 219);
+    width: 100%;
+    height: fit-content;
+    position: sticky;
+    display: block;
+}
+
+#container{
+    width: 80%;
+    margin-left: 10%;
+    padding: 15px;
+}
+
+#title{
+    font-size: 200%;
+    font-family: 'Times New Roman', Times, serif;
+    color: rgb(223, 208, 10);
+    text-align: center;
+    border-top: rgb(89, 99, 3) double 5px;
+    border-bottom: rgb(89, 99, 3) double 5px;
+}
+
+#header nav{
+    display: block;
+    width: 100%;
+    height: fit-content;
+    margin: 15px 0 0 0;
+    padding: 0;
+}
+
+#header nav div a{
+    position: relative;
+    display: inline-box;
+    margin: 0;
+    padding: 0;
+    width: 25%;
+    text-align: center;
+}
+
+#header nav a{
+    color: black;
+    font-size: 200%;
+    font-family: 'Times New Roman', Times, serif;
+}
