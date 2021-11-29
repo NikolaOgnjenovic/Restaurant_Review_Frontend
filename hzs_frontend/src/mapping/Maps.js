@@ -34,6 +34,11 @@ const API_KEY = "AIzaSyD6XbHQZ_VUZaNXSXAlu0Ufj8IM-07M9NY";
 
 const libraries = ["places"];
 
+const mapContainerStyle = {
+    width: "500px",
+    height: "400px"
+};
+
 const center={
     lat: 44.7544, 
     lng: 19.4705
@@ -49,12 +54,7 @@ const options={
 var loadError=null;*/
 
 // ===================== MAPS_WINDOW ===========================================================
-const MapsWindow = (width, height) => {
-    const mapContainerStyle = {
-        width: width,
-        height: height
-    };
-
+const MapsWindow = () => {
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: API_KEY,
         libraries
