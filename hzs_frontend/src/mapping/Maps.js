@@ -1,10 +1,31 @@
-/*********************************************************************************
- *                                                                               *
- *   Da bi ste koristili mapu kao elemnt koristite tag <MapsWindow></MapsWindow  *
- *                                                                               *
- *********************************************************************************/
-import React from "react";
-import {GoogleMap, useLoadScript, Marker, InfoWindow} from '@react-google-maps/api';
+/**********************************************************************************
+ *                                                                                *
+ *   Da bi ste importovali koristite:                                             *
+ *      import {MapsWindow} from './mapping/Maps'                                 *
+ *   Da bi ste koristili mapu kao elemnt koristite tag <MapsWindow></MapsWindow>  *
+ *                                                                                *
+ **********************************************************************************/
+import React, {useState} from "react";
+import {GoogleMap,
+     useLoadScript,
+     Marker,
+     InfoWindow
+    } from '@react-google-maps/api';
+
+import usePlacesAutocomplete, {
+    getGeocode,
+    getLatLng,
+  } from "use-places-autocomplete";
+
+  import {
+    Combobox,
+    ComboboxInput,
+    ComboboxPopover,
+    ComboboxList,
+    ComboboxOption,
+    ComboboxOptionText,
+  } from "@reach/combobox";
+  import "@reach/combobox/styles.css";
 
 const API_KEY = "AIzaSyD6XbHQZ_VUZaNXSXAlu0Ufj8IM-07M9NY";
 
@@ -20,20 +41,18 @@ const center={
     lng: 19.467379
 };
 
+const options={
+    disableDefaultUI: true,
+}
+
 var isLoaded=false;
 var loadError=null;
-
-var Maps = () => {
-
-}
 
 const MapsWindow = () => {
     ({isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: API_KEY,
         libraries
     }));
-    
-    console.log(API_KEY);
 
     if(loadError) 
         return <h1>Error loading maps</h1>;
@@ -44,11 +63,46 @@ const MapsWindow = () => {
         <div>
             <GoogleMap mapContainerStyle={mapContainerStyle}
                         zoom = {5}
-                        center={center}>
-
+                        center={center}
+                        options={options}>
             </GoogleMap>
+            <Search></Search>
         </div>
     );
 };
 
-export {Maps, MapsWindow};
+const Search=()=>{
+    const {
+        ready,
+        value, 
+        suggestions: {
+            status,
+            data
+        },
+        setValue,
+        clearSuggestions
+    } = usePlacesAutocomplete({
+        requestOptions:{
+            location: {lat: ()=>center.lat, lng: ()=> center.lng},
+            radius: 100*1000
+        }
+    });
+
+    console.log(ready,value);
+
+    return <Combobox onSelect={(addr)=>{
+        console.log(addr);
+    }}>
+        <ComboboxInput value={value}
+                        onChange={(event)=>{
+                            setValue(event.target.value);
+                        }}
+                        disabled={!ready}
+        />
+        <ComboboxPopover>
+            {status == "OK" && data.map(({id, desctiption})=> <ComboboxOption key={id} value={desctiption}/>)}
+        </ComboboxPopover>
+    </Combobox>;
+}
+
+export {MapsWindow};
