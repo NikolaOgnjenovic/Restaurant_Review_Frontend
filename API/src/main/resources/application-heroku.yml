@@ -1,0 +1,12 @@
+server:
+  error:
+    include-message: always
+spring:
+  datasource:
+    url: jdbc:mysql://${DATABASE_HOST}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+
+  jpa:
+    hibernate:
+      ddl-auto: update

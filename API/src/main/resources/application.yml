@@ -1,1 +1,12 @@
+server:
+  error:
+    include-message: always
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/hzs-domaci
+    username: root
+    password: sifra
 
+  jpa:
+    hibernate:
+      ddl-auto: update

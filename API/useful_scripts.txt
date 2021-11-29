@@ -1,0 +1,2 @@
+docker volume create local-mysql
+docker run -e MYSQL_ROOT_PASSWORD=sifra --mount type=volume,src=local-mysql,dst=/var/lib/mysql -p 3306:3306 -d mysql

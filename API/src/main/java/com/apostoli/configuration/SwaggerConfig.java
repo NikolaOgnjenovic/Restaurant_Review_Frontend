@@ -1,4 +1,4 @@
-package io.github.com.pavleprica.hzs.template.configuration;
+package com.apostoli.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,16 +18,16 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors
-                        .basePackage("io.github.com.pavleprica.hzs.template.controller"))
+                        .basePackage("io.github.com.NikolaOgnjenovic.HZS_domaci.controller"))
                 .paths(PathSelectors.any())
                 .build()
-                .apiInfo(apiEndpointsInfo());
+                .apiInfo(apiEndpointsInfo()); //localhost:8080/swagger-ui/
     }
 
     private ApiInfo apiEndpointsInfo() {
         return new ApiInfoBuilder()
-                .title("HZS Hackathon - FONIS")
-                .contact(new Contact("Pavle Prica", "https://github.com/pavleprica", "pavle.prica@zuehlke.com"))
+                .title("Recenzije")
+                .contact(new Contact("Nikola Ognjenovic", "https://github.com/NikolaOgnjenovic", "nikola.31023@gmail.com"))
                 .version("0.0.1")
                 .build();
     }
