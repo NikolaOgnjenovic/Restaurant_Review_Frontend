@@ -1,4 +1,4 @@
-package com.apostoli.model;
+package com.apostoli.recenzije.app.model;
 
 import javax.validation.constraints.NotBlank;
 
@@ -8,6 +8,7 @@ public record CreateReviewDto(
         @NotBlank
         String description,
         int likes,
-        int dislikes
+        int dislikes,
+        int foodCost
 ) {
 }

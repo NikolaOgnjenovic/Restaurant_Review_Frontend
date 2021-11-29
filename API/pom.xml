@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.apostoli</groupId>
-    <artifactId>hzs.template</artifactId>
+    <artifactId>recenzije</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Recenzije</name>
     <properties>
@@ -37,7 +37,6 @@
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
         </dependency>
-
         <!--	Documentation generation	-->
         <dependency>
             <groupId>io.springfox</groupId>

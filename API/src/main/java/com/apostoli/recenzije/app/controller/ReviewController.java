@@ -1,14 +1,15 @@
-package com.apostoli.controller;
+package com.apostoli.recenzije.app.controller;
 
-import com.apostoli.model.CreateReviewDto;
-import com.apostoli.model.ReturnReviewDto;
-import com.apostoli.model.Review;
-import com.apostoli.service.ReviewService;
+import com.apostoli.recenzije.app.model.CreateReviewDto;
+import com.apostoli.recenzije.app.model.ReturnReviewDto;
+import com.apostoli.recenzije.app.model.Review;
+import com.apostoli.recenzije.app.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 import java.util.List;
 
@@ -46,6 +47,7 @@ public class ReviewController {
         Review createReview = Review.builder()
                 .title(review.title())
                 .description(review.description())
+                .foodCost(review.foodCost())
                 .build();
         return reviewService.createReview(createReview);
     }
@@ -53,6 +55,16 @@ public class ReviewController {
     @PutMapping("/{id}")
     ReturnReviewDto updateReviewById(@PathVariable Long id, @RequestBody Review ReviewUpdated) {
         return reviewService.updateReviewById(id, ReviewUpdated);
+    }
+
+    @PutMapping("/{id}/likeReviewById")
+    ReturnReviewDto likeReviewById(@PathVariable Long id) {
+        return reviewService.likeReviewById(id);
+    }
+
+    @PutMapping("/{id}/dislikeReviewById")
+    ReturnReviewDto dislikeReviewById(@PathVariable Long id) {
+        return reviewService.dislikeReviewById(id);
     }
 
     @DeleteMapping("/{id}")

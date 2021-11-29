@@ -1,4 +1,4 @@
-package com.apostoli.model;
+package com.apostoli.recenzije.app.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,10 +17,12 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(unique = true, nullable = false)
-    private String title;
     @Column(nullable = false)
+    private String title;
     private String description;
+    @Column(columnDefinition = "integer default 0")
     private int likes;
+    @Column(columnDefinition = "integer default 0")
     private int dislikes;
+    private int foodCost;
 }

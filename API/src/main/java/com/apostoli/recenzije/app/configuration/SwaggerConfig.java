@@ -1,4 +1,4 @@
-package com.apostoli.configuration;
+package com.apostoli.recenzije.app.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,7 +18,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors
-                        .basePackage("io.github.com.NikolaOgnjenovic.HZS_domaci.controller"))
+                        .basePackage("com.apostoli.recenzije.app.controller"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiEndpointsInfo()); //localhost:8080/swagger-ui/

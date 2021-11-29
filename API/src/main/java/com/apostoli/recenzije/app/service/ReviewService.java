@@ -1,8 +1,8 @@
-package com.apostoli.service;
+package com.apostoli.recenzije.app.service;
 
-import com.apostoli.exceptions.ReviewNotFound;
-import com.apostoli.model.ReturnReviewDto;
-import com.apostoli.model.Review;
+import com.apostoli.recenzije.app.exceptions.ReviewNotFound;
+import com.apostoli.recenzije.app.model.ReturnReviewDto;
+import com.apostoli.recenzije.app.model.Review;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Slf4j
 public class ReviewService {
-    private final com.apostoli.repository.ReviewRepository ReviewRepository;
+    private final com.apostoli.recenzije.app.repository.ReviewRepository ReviewRepository;
 
     public List<ReturnReviewDto> getAllReviews() {
         return ReviewRepository.findAll()
@@ -60,6 +60,30 @@ public class ReviewService {
         }
     }
 
+    public ReturnReviewDto likeReviewById(Long id) {
+        Optional<Review> optionalReview = ReviewRepository.findById(id);
+
+        if(optionalReview.isPresent()) {
+            Review savedReview = optionalReview.get();
+            savedReview.setLikes(savedReview.getLikes()+1);
+            return mapToDto(ReviewRepository.save(savedReview));
+        } else {
+            throw new ReviewNotFound("Requested id not present [" + id + "]");
+        }
+    }
+
+    public ReturnReviewDto dislikeReviewById(Long id) {
+        Optional<Review> optionalReview = ReviewRepository.findById(id);
+
+        if(optionalReview.isPresent()) {
+            Review savedReview = optionalReview.get();
+            savedReview.setDislikes(savedReview.getDislikes()+1);
+            return mapToDto(ReviewRepository.save(savedReview));
+        } else {
+            throw new ReviewNotFound("Requested id not present [" + id + "]");
+        }
+    }
+
     public void deleteReviewById(Long id) {
         Optional<Review> optionalReview = ReviewRepository.findById(id);
 
@@ -76,7 +100,8 @@ public class ReviewService {
                 review.getTitle(),
                 review.getDescription(),
                 review.getLikes(),
-                review.getDislikes()
+                review.getDislikes(),
+                review.getFoodCost()
         );
     }
 }
