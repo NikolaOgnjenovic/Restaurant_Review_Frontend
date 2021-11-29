@@ -27,20 +27,16 @@ import usePlacesAutocomplete, {
   } from "@reach/combobox";
   import "@reach/combobox/styles.css";
 
+import './maps.css'
 import mapStyle from './mapStyle';
 
 const API_KEY = "AIzaSyD6XbHQZ_VUZaNXSXAlu0Ufj8IM-07M9NY";
 
 const libraries = ["places"];
 
-const mapContainerStyle = {
-    width: "500px",
-    height: "400px"
-};
-
 const center={
-    lat: 51.5028048, 
-    lng: -0.1136124
+    lat: 44.7544, 
+    lng: 19.4705
 };
 
 const options={
@@ -53,7 +49,12 @@ const options={
 var loadError=null;*/
 
 // ===================== MAPS_WINDOW ===========================================================
-const MapsWindow = () => {
+const MapsWindow = (width, height) => {
+    const mapContainerStyle = {
+        width: width,
+        height: height
+    };
+
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: API_KEY,
         libraries
@@ -72,12 +73,14 @@ const MapsWindow = () => {
     return(
         <div>
             <Search></Search>
-            <GoogleMap mapContainerStyle={mapContainerStyle}
-                        zoom={14}
-                        center={center}
-                        options={options}
-                        onLoad={onMapLoad}>
-            </GoogleMap>
+            <div className="map_container">
+                <GoogleMap mapContainerStyle={mapContainerStyle}
+                            zoom={14}
+                            center={center}
+                            options={options}
+                            onLoad={onMapLoad}>
+                </GoogleMap>
+            </div>
         </div>
     );
 };
@@ -101,8 +104,15 @@ function Search(){
 
     console.log(ready,value);
 
-    return <Combobox onSelect={(address)=>{
+    return <div className="search_box">
+                <Combobox onSelect={async (address)=>{
                                     console.log(address);
+                                    try{
+                                       const results = await getGeocode({address});
+                                       console.log(results);
+                                    }catch(exeption){
+                                        console.log(exeption);
+                                    }
                                 }}>
                 <ComboboxInput value={value}
                                 onChange={(event)=>{
@@ -115,10 +125,12 @@ function Search(){
                         console.log(test);
                         let place_id, description, rest;
                         ({place_id, description, ...rest} = test);
-                        return <ComboboxOption key={place_id} value={description}/>;
+                        return <ComboboxOption key={place_id}
+                                             value={description}/>;
                     })}
                 </ComboboxPopover>
-            </Combobox>;
+            </Combobox>
+        </div>;
 }
 
 export {MapsWindow};
