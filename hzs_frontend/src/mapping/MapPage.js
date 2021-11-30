@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Header from "../header/Header";
 import { MapsWindow } from "./Maps";
+import ReviewList from "../components/ReviewList.js";
 
 const MapPage = () =>{
     const [review, setReview] = useState({
@@ -21,6 +22,7 @@ const MapPage = () =>{
             <div id="map_win_container">
                 <MapsWindow></MapsWindow>
             </div>
+            <ReviewList/>
         </React.Fragment>
     );
 }
