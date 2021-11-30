@@ -38,9 +38,13 @@ public class ReviewController {
         return reviewService.getAllReviews();
     }
 
+    @GetMapping("/placeId/{id}")
+    List<ReturnReviewDto> getReviewsByPlaceId(@PathVariable String placeId) {
+        return reviewService.getReviewsByPlaceId(placeId);
+    }
+
     @GetMapping("/{id}")
     ReturnReviewDto getReviewById(@PathVariable Long id) {
-        log.info("Getting review by id {}", id);
         return reviewService.getReviewById(id);
     }
 

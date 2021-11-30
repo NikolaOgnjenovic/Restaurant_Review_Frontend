@@ -12,6 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -28,6 +29,14 @@ public class ReviewService {
                 .collect(Collectors.toList());
     }
 
+    public List<ReturnReviewDto> getReviewsByPlaceId(String placeId) {
+        List<ReturnReviewDto> reviewList = getAllReviews();
+
+        reviewList.removeIf(review -> !Objects.equals(review.placeId(), placeId));
+
+        return reviewList;
+    }
+
     public ReturnReviewDto getReviewById(Long id) {
         Optional<Review> optionalReview = ReviewRepository.findById(id);
 
@@ -36,7 +45,6 @@ public class ReviewService {
         } else {
             throw new ReviewNotFound("Requested id not present [" + id + "]");
         }
-
     }
 
     public ReturnReviewDto createReview(Review Review) {
@@ -70,7 +78,7 @@ public class ReviewService {
 
             //Add the review's author id to the list of users who have liked the review
             ArrayList<Long> newLikedByList = savedReview.getLikedBy();
-            if(newLikedByList == null) newLikedByList = new ArrayList<>();
+            if (newLikedByList == null) newLikedByList = new ArrayList<>();
             newLikedByList.add(userId);
             savedReview.setLikedBy(newLikedByList);
 
@@ -89,7 +97,7 @@ public class ReviewService {
 
             //Add the review's author id to the list of users who have disliked the review
             ArrayList<Long> newDislikedByList = savedReview.getDislikedBy();
-            if(newDislikedByList == null) newDislikedByList = new ArrayList<>();
+            if (newDislikedByList == null) newDislikedByList = new ArrayList<>();
             newDislikedByList.add(userId);
             savedReview.setDislikedBy(newDislikedByList);
 
@@ -119,7 +127,8 @@ public class ReviewService {
                 review.getFoodCost(),
                 review.getUserId(),
                 (review.getLikedBy() == null) ? new ArrayList<>() : review.getLikedBy(),
-                (review.getDislikedBy() == null) ? new ArrayList<>() : review.getDislikedBy()
+                (review.getDislikedBy() == null) ? new ArrayList<>() : review.getDislikedBy(),
+                review.getPlaceId()
         );
     }
 }

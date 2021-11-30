@@ -13,6 +13,7 @@ public record CreateReviewDto(
         int foodCost,
         Long userId,
         ArrayList<Long> likedBy,
-        ArrayList<Long> dislikedBy
+        ArrayList<Long> dislikedBy,
+        String placeId
 ) {
 }

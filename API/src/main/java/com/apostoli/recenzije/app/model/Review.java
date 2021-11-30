@@ -29,4 +29,5 @@ public class Review {
     private Long userId;
     private ArrayList<Long> likedBy;
     private ArrayList<Long> dislikedBy;
+    private String placeId;
 }
