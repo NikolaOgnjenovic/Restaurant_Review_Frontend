@@ -45,6 +45,21 @@ public class UserController {
         return userService.validateLogin(usernameAndPassword.getFirst(), usernameAndPassword.getSecond());
     }
 
+    @GetMapping("/{id}/getLikes")
+    int getLikesByUserId(@PathVariable Long id) {
+        return userService.getLikesByUserId(id);
+    }
+
+    @GetMapping("/{id}/getDislikes")
+    int getDislikesByUserId(@PathVariable Long id) {
+        return userService.getDislikesByUserId(id);
+    }
+
+    @GetMapping("/{id}/getReviews")
+    List<ReturnReviewDto> getReviewsByUserId(@PathVariable Long id) {
+        return userService.getReviewsByUserId(id);
+    }
+
     @PostMapping
     ReturnUserDto createUser(@RequestBody @Valid CreateUserDto user) {
         User createUser = User.builder()

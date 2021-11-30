@@ -1,6 +1,7 @@
 package com.apostoli.recenzije.app.service;
 
 import com.apostoli.recenzije.app.exceptions.ReviewNotFound;
+import com.apostoli.recenzije.app.model.ReturnReviewDto;
 import com.apostoli.recenzije.app.repository.UserRepository;
 import com.apostoli.recenzije.app.model.ReturnUserDto;
 import com.apostoli.recenzije.app.model.User;
@@ -23,6 +24,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public class UserService {
     private final UserRepository UserRepository;
+    private final ReviewService reviewService;
 
     public List<ReturnUserDto> getAllUsers() {
         return UserRepository.findAll()
@@ -57,6 +59,33 @@ public class UserService {
         } catch (DataIntegrityViolationException exception) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Can't create duplicates");
         }
+    }
+
+    public int getLikesByUserId(Long id) {
+        List<ReturnReviewDto> allReviews = reviewService.getAllReviews();
+        for (ReturnReviewDto review : allReviews) {
+            if(Objects.equals(review.userId(), id)) {
+                return review.likes();
+            }
+        }
+        return 0;
+    }
+
+    public int getDislikesByUserId(Long id) {
+        List<ReturnReviewDto> allReviews = reviewService.getAllReviews();
+        for (ReturnReviewDto review : allReviews) {
+            if(Objects.equals(review.userId(), id)) {
+                return review.dislikes();
+            }
+        }
+        return 0;
+    }
+
+    public List<ReturnReviewDto> getReviewsByUserId(Long id) {
+        List<ReturnReviewDto> allReviews = reviewService.getAllReviews();
+        allReviews.removeIf(review -> !Objects.equals(review.userId(), id));
+
+        return allReviews;
     }
 
     private ReturnUserDto mapToDto(User user) {
