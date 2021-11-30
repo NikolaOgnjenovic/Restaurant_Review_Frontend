@@ -27,6 +27,9 @@ import usePlacesAutocomplete, {
   } from "@reach/combobox";
   import "@reach/combobox/styles.css";
 
+import './maps.css'
+import mapStyle from './mapStyle';
+
 const API_KEY = "AIzaSyD6XbHQZ_VUZaNXSXAlu0Ufj8IM-07M9NY";
 
 const libraries = ["places"];
@@ -37,22 +40,30 @@ const mapContainerStyle = {
 };
 
 const center={
-    lat: 44.754100, 
-    lng: 19.467379
+    lat: 44.7544, 
+    lng: 19.4705
 };
 
 const options={
+    //styles: mapStyle,
     disableDefaultUI: true,
+    zoomControl: true
 }
 
-var isLoaded=false;
-var loadError=null;
+/*var isLoaded=false;
+var loadError=null;*/
 
+// ===================== MAPS_WINDOW ===========================================================
 const MapsWindow = () => {
-    ({isLoaded, loadError} = useLoadScript({
+    const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: API_KEY,
         libraries
-    }));
+    })
+
+    const mapRef = React.useRef();
+    const onMapLoad = React.useCallback((map)=>{
+        mapRef.current = map;
+    }, []);
 
     if(loadError) 
         return <h1>Error loading maps</h1>;
@@ -61,48 +72,65 @@ const MapsWindow = () => {
 
     return(
         <div>
-            <GoogleMap mapContainerStyle={mapContainerStyle}
-                        zoom = {5}
-                        center={center}
-                        options={options}>
-            </GoogleMap>
             <Search></Search>
+            <div className="map_container">
+                <GoogleMap mapContainerStyle={mapContainerStyle}
+                            zoom={14}
+                            center={center}
+                            options={options}
+                            onLoad={onMapLoad}>
+                </GoogleMap>
+            </div>
         </div>
     );
 };
 
-const Search=()=>{
+function Search(){
     const {
         ready,
         value, 
         suggestions: {
             status,
-            data
+            data,
         },
         setValue,
         clearSuggestions
     } = usePlacesAutocomplete({
         requestOptions:{
             location: {lat: ()=>center.lat, lng: ()=> center.lng},
-            radius: 100*1000
+            radius: 10*1000
         }
     });
 
     console.log(ready,value);
 
-    return <Combobox onSelect={(addr)=>{
-        console.log(addr);
-    }}>
-        <ComboboxInput value={value}
-                        onChange={(event)=>{
-                            setValue(event.target.value);
-                        }}
-                        disabled={!ready}
-        />
-        <ComboboxPopover>
-            {status == "OK" && data.map(({id, desctiption})=> <ComboboxOption key={id} value={desctiption}/>)}
-        </ComboboxPopover>
-    </Combobox>;
+    return <div className="search_box">
+                <Combobox onSelect={async (address)=>{
+                                    console.log(address);
+                                    try{
+                                       const results = await getGeocode({address});
+                                       console.log(results);
+                                    }catch(exeption){
+                                        console.log(exeption);
+                                    }
+                                }}>
+                <ComboboxInput value={value}
+                                onChange={(event)=>{
+                                    setValue(event.target.value);
+                                }}
+                                disabled={!ready}
+                                placeholder={"Enter address here"} />
+                <ComboboxPopover>
+                    {status === "OK" && data.map((test)=>{
+                        console.log(test);
+                        let place_id, description, rest;
+                        ({place_id, description, ...rest} = test);
+                        return <ComboboxOption key={place_id}
+                                             value={description}/>;
+                    })}
+                </ComboboxPopover>
+            </Combobox>
+        </div>;
 }
 
 export {MapsWindow};

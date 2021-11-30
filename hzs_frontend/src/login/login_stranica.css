@@ -1,0 +1,107 @@
+body{
+  margin: 0;
+  padding: 0;
+  /**background: url(hranapozadina3.jpg);*/
+  background-size: cover;
+  background-position: center;
+  font-family: sans-serif;
+}
+.loginbox{
+  width: 320px;
+  height: 420px;
+  background: rgba(0,0,0,.5) ;
+  color: #fff;
+  top: 50%;
+  left:50%;
+  position: absolute;
+  transform: translate(-50%,-50%);
+  box-sizing: border-box;
+  padding: 70px 30px;
+  animation-name: animacija1;
+  animation-duration: 20s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+  border-radius: 15px;
+  border: 5px solid rgba(0,0,0,0.5);
+}
+@keyframes animacija1{
+  0%  {background-color:rgba(0,0,0,.5);}
+  10% {background-color:rgba(0,0,0,.4);}
+  20% {background-color:rgba(0,0,0,.5);}
+  30% {background-color:rgba(0,0,0,.4);}
+  40% {background-color:rgba(0,0,0,.5);}
+  50% {background-color:rgba(0,0,0,.4);}
+  60% {background-color:rgba(0,0,0,.5);}
+  70% {background-color:rgba(0,0,0,.4);}
+  80% {background-color:rgba(0,0,0,.5);}
+  90% {background-color:rgba(0,0,0,.4);}
+  100% {background-color:rgba(0,0,0,.5);}
+}
+.avatar{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  position: absolute;
+  top: -50px;
+  left: calc(50% - 50px);
+}
+h1{
+  margin: 0;
+  padding: 0 0 20px;
+  text-align: center;
+  font-size: 22px;
+}
+.loginbox p{
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+}
+ ::placeholder
+{
+  color: darkgrey;
+}
+.loginbox input{
+  width: 100%;
+  margin-bottom: 20px;
+}
+.loginbox input[type='text'], input[type="password"]
+{
+  border: none;
+  border-bottom: 1px solid #fff;
+  background: transparent;
+  outline: none;
+  height: 40px;
+  color: #fff;
+  font-size: 16px;
+}
+.loginbox input[type="submit"]
+{
+  border: none;
+  outline: none;
+  height: 40px;
+  background: #fb2525;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 20px;
+  border: 5px solid rgba(0,0,0,0.5);
+  transition-duration: 0.5s;
+}
+.loginbox input[type="submit"]:hover
+{
+  cursor: pointer;
+  background: darkgreen;
+  color: yellow;
+}
+.loginbox a{
+  text-decoration: none;
+  font-size: 12px;
+  line-height: 20px;
+  color: lightblue;
+  transition-duration: 1s;
+}
+.loginbox a:hover
+{
+  color: rgb(243, 243, 59);
+  line-height: 30px;
+  font-size: 15px;
+}
