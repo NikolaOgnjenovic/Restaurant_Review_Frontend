@@ -1,25 +1,58 @@
-import logo from './logo.svg';
 import './App.css';
+import ReviewList from "./components/ReviewList.js";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+    const reviews = [
+      {
+        id: 1,
+        title: 'recenzija 1',
+        description: 'opis recenzije ksjafghkjhsdgfkhjksdjhfg sg jsdfg kjs gfkjs gfkjsfgk\n ashdklashdklfhsadklfh klashdfl\n lol\n okay\n\n\n ashdflkhs kljash dflkahjsdfklhaslkdjfh iuqweri oqwheksajdfh klasd f skdfh klqweyr iouwyqer ksajdhf klqwyerioksahfd',
+        likes: 3,
+        dislikes: 2,
+        foodCost: 50,
+        userId: 123,
+        likedBy: ['user1', 'user2', 'user3'],
+        dislikedBy: ['user4', 'user5'],
+        placeId: 60,
+      },
+      {
+        id: 2,
+        title: 'recenzija 2',
+        description: 'opis recenzije ksjafghkjhsdgfkhjksdjhfg sg jsdfg kjs gfkjs gfkjsfgk\n ashdklashdklfhsadklfh klashdfl\n lol\n okay\n\n\n ashdflkhs kljash dflkahjsdfklhaslkdjfh iuqweri oqwheksajdfh klasd f skdfh klqweyr iouwyqer ksajdhf klqwyerioksahfd',
+        likes: 3,
+        dislikes: 2,
+        foodCost: 50,
+        userId: 123,
+        likedBy: ['user1', 'user2', 'user3'],
+        dislikedBy: ['user4', 'user5'],
+        placeId: 60,
+      },
+      {
+        id: 4,
+        title: 'recenzija 4',
+        description: 'opis recenzije ksjafghkjhsdgfkhjksdjhfg sg jsdfg kjs gfkjs gfkjsfgk\n ashdklashdklfhsadklfh klashdfl\n lol\n okay\n\n\n ashdflkhs kljash dflkahjsdfklhaslkdjfh iuqweri oqwheksajdfh klasd f skdfh klqweyr iouwyqer ksajdhf klqwyerioksahfd',
+        likes: 3,
+        dislikes: 2,
+        foodCost: 50,
+        userId: 123,
+        likedBy: ['user1', 'user2', 'user3'],
+        dislikedBy: ['user4', 'user5'],
+        placeId: 60,
+      },
+      {
+        id: 5,
+        title: 'recenzija 5',
+        description: 'opis recenzije ksjafghkjhsdgfkhjksdjhfg sg jsdfg kjs gfkjs gfkjsfgk\n ashdklashdklfhsadklfh klashdfl\n lol\n okay\n\n\n ashdflkhs kljash dflkahjsdfklhaslkdjfh iuqweri oqwheksajdfh klasd f skdfh klqweyr iouwyqer ksajdhf klqwyerioksahfd',
+        likes: 3,
+        dislikes: 2,
+        foodCost: 50,
+        userId: 123,
+        likedBy: ['user1', 'user2', 'user3'],
+        dislikedBy: ['user4', 'user5'],
+        placeId: 60,
+      },
+    ]
+    return(<ReviewList reviewList={reviews}/>);
 }
 
 export default App;
