@@ -20,16 +20,17 @@ const MapPage = () =>{
     return(
         <React.Fragment>
             <div id="map_win_container">
-                <MapsWindow></MapsWindow>
+                <MapsWindow onMarkerClick={CreateReview}></MapsWindow>
             </div>
             <ReviewList/>
         </React.Fragment>
     );
 }
 
-const CreateReview = () =>{
+const CreateReview = (place, address) =>{
     const serverURL = "";
-    
+    console.log("Place is : ", place);
+    console.log("Address : ",address);
 }
 
 export default MapPage;

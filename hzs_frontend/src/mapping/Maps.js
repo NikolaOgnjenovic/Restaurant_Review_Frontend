@@ -40,8 +40,8 @@ const mapContainerStyle = {
 };
 
 const center={
-    lat: 44.7544, 
-    lng: 19.4705
+    lat: 44.7553, 
+    lng: 19.6923
 };
 
 const options={
@@ -50,11 +50,33 @@ const options={
     zoomControl: true
 }
 
-/*var isLoaded=false;
-var loadError=null;*/
-
 // ===================== MAPS_WINDOW ===========================================================
-const MapsWindow = (onMarkerClick) => {
+const MapsWindow = ({onMarkerClick}) => {
+    const {isLoaded, loadError} = useLoadScript({
+        googleMapsApiKey: API_KEY,
+        libraries
+    })
+
+    const mapRef = React.useRef();
+    const onMapLoad = React.useCallback((map)=>{
+        mapRef.current = map;
+    }, []);
+
+    const panTo = React.useCallback(({lat, lng})=>{
+        mapRef.current.panTo({lat, lng});
+        mapRef.current.setZoom(18);
+    });
+
+    const [selectedMarker, setSelectedMarker] = useState({
+        place_id: null,
+        lat: null,
+        lng: null
+    });
+
+    const [placesFound, setPlacesFound] = useState([])
+
+    const [slectedAddress, setSelectedAddress] = useState("");
+
     function Search(){
         const {
             ready,
@@ -87,6 +109,21 @@ const MapsWindow = (onMarkerClick) => {
                                         try{
                                            const results = await getGeocode({address});
                                            console.log(results);
+                                           const {lat, lng} = await getLatLng(results[0]);
+                                           console.log(lat, lng);
+                                           setSelectedMarker({
+                                               place_id: results[0].place_id,
+                                               lat: lat,
+                                               lng: lng
+                                            });
+                                            setSelectedAddress(results[0].address_components);
+                                            setPlacesFound((current)=>{
+                                                if(status === "OK")
+                                                    return data;
+                                                return [];
+                                            });
+                                            panTo({lat, lng});
+                                            clearSuggestions();
                                         }catch(exeption){
                                             console.log(exeption);
                                         }
@@ -103,25 +140,12 @@ const MapsWindow = (onMarkerClick) => {
                             let place_id, description, rest;
                             ({place_id, description, ...rest} = place);
                             return <ComboboxOption key={place_id}
-                                                 value={description}
-                                                 onClick={(e)=>{
-                                                     
-                                                 }}/>;
+                                                 value={description}/>;
                         })}
                     </ComboboxPopover>
                 </Combobox>
             </div>;
     }
-
-    const {isLoaded, loadError} = useLoadScript({
-        googleMapsApiKey: API_KEY,
-        libraries
-    })
-
-    const mapRef = React.useRef();
-    const onMapLoad = React.useCallback((map)=>{
-        mapRef.current = map;
-    }, []);
 
     if(loadError) 
         return <h1>Error loading maps</h1>;
@@ -135,10 +159,20 @@ const MapsWindow = (onMarkerClick) => {
             </div>
             <div className="map_container">
                 <GoogleMap mapContainerStyle={mapContainerStyle}
-                            zoom={14}
+                            zoom={10}
                             center={center}
                             options={options}
-                            onLoad={onMapLoad}>
+                            onLoad={onMapLoad}
+                            onClick={(event)=>{
+                                setSelectedMarker({});
+                                setPlacesFound([]);
+                            }}>
+                        {selectedMarker.place_id && <Marker key={selectedMarker.place_id}
+                                                                  position={{lat:selectedMarker.lat, lng:selectedMarker.lng}}
+                                                                  onClick={(event)=>{
+                                                                    return onMarkerClick(placesFound.filter(place=>place.place_id==selectedMarker.place_id),
+                                                                                  slectedAddress);
+                                                                  }}/>}
                 </GoogleMap>
             </div>
             
