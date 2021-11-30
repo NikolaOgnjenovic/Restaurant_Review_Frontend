@@ -3,6 +3,7 @@ package com.apostoli.recenzije.app.service;
 import com.apostoli.recenzije.app.exceptions.ReviewNotFound;
 import com.apostoli.recenzije.app.model.ReturnReviewDto;
 import com.apostoli.recenzije.app.model.Review;
+import com.apostoli.recenzije.app.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -20,7 +21,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Slf4j
 public class ReviewService {
-    private final com.apostoli.recenzije.app.repository.ReviewRepository ReviewRepository;
+    private final ReviewRepository ReviewRepository;
 
     public List<ReturnReviewDto> getAllReviews() {
         return ReviewRepository.findAll()
