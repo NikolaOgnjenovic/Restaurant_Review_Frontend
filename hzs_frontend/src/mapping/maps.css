@@ -1,9 +1,31 @@
-.search_box{
+#map_wrapper{
+    display: block;
+    position: relative;
+    border: 2px solid black;
+    border-radius: 1%;
+    width: fit-content;
+    height: fit-content;
+}
+
+.map_container{
+    margin: 0;
+    position: relative;
+    display: block;
+    z-index: 0;
+}
+
+#search_wrapper{
+    margin: 0;
+    width: 90%;
+    display: block;
+    position: absolute;
+    z-index: 10;
+    margin: 1% 0 0 10%;
+    height: fit-content;
+}
+
+reach-portal div{
     position: absolute;
     z-index: 10;
 }
 
-.map_container{
-    position: absolute;
-    z-index: 1;
-}

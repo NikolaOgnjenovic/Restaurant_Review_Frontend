@@ -30,7 +30,7 @@ import usePlacesAutocomplete, {
 import './maps.css'
 import mapStyle from './mapStyle';
 
-const API_KEY = "AIzaSyD6XbHQZ_VUZaNXSXAlu0Ufj8IM-07M9NY";
+const API_KEY = "AIzaSyDonwQpIjVos4IF9zZKajYfXImEpwra5o8";
 
 const libraries = ["places"];
 
@@ -54,7 +54,65 @@ const options={
 var loadError=null;*/
 
 // ===================== MAPS_WINDOW ===========================================================
-const MapsWindow = () => {
+const MapsWindow = (onMarkerClick) => {
+    function Search(){
+        const {
+            ready,
+            value, 
+            suggestions: {
+                status,
+                data,
+            },
+            setValue,
+            clearSuggestions
+        } = usePlacesAutocomplete({
+            requestOptions:{
+                location: {lat: ()=>center.lat, lng: ()=> center.lng},
+                radius: 10*1000
+            }
+        });
+    
+        console.log(ready,value);
+    
+        const isSellingFood = (place) => {
+            return (place.types.indexOf("food")!=-1) ||
+                   (place.types.indexOf("restaurant")!=-1) ||
+                   (place.types.indexOf("bakery")!=-1) ||
+                   (place.types.indexOf("cafe")!=-1);
+        }
+    
+        return <div className="search_box">
+                    <Combobox onSelect={async (address)=>{
+                                        console.log(address);
+                                        try{
+                                           const results = await getGeocode({address});
+                                           console.log(results);
+                                        }catch(exeption){
+                                            console.log(exeption);
+                                        }
+                                    }}>
+                    <ComboboxInput value={value}
+                                    onChange={(event)=>{
+                                        setValue(event.target.value);
+                                    }}
+                                    disabled={!ready}
+                                    placeholder={"Enter address here"} />
+                    <ComboboxPopover>
+                        {status === "OK" && data.filter(test => isSellingFood(test)).map((place)=>{
+                            console.log(place);
+                            let place_id, description, rest;
+                            ({place_id, description, ...rest} = place);
+                            return <ComboboxOption key={place_id}
+                                                 value={description}
+                                                 onClick={(e)=>{
+                                                     
+                                                 }}/>;
+                        })}
+                    </ComboboxPopover>
+                </Combobox>
+            </div>;
+    }
+
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: API_KEY,
         libraries
@@ -71,8 +129,10 @@ const MapsWindow = () => {
         return <h4>Loading...</h4>;
 
     return(
-        <div>
-            <Search></Search>
+        <div id="map_wrapper">
+            <div id="search_wrapper">
+                <Search></Search>
+            </div>
             <div className="map_container">
                 <GoogleMap mapContainerStyle={mapContainerStyle}
                             zoom={14}
@@ -81,56 +141,9 @@ const MapsWindow = () => {
                             onLoad={onMapLoad}>
                 </GoogleMap>
             </div>
+            
         </div>
     );
 };
-
-function Search(){
-    const {
-        ready,
-        value, 
-        suggestions: {
-            status,
-            data,
-        },
-        setValue,
-        clearSuggestions
-    } = usePlacesAutocomplete({
-        requestOptions:{
-            location: {lat: ()=>center.lat, lng: ()=> center.lng},
-            radius: 10*1000
-        }
-    });
-
-    console.log(ready,value);
-
-    return <div className="search_box">
-                <Combobox onSelect={async (address)=>{
-                                    console.log(address);
-                                    try{
-                                       const results = await getGeocode({address});
-                                       console.log(results);
-                                    }catch(exeption){
-                                        console.log(exeption);
-                                    }
-                                }}>
-                <ComboboxInput value={value}
-                                onChange={(event)=>{
-                                    setValue(event.target.value);
-                                }}
-                                disabled={!ready}
-                                placeholder={"Enter address here"} />
-                <ComboboxPopover>
-                    {status === "OK" && data.map((test)=>{
-                        console.log(test);
-                        let place_id, description, rest;
-                        ({place_id, description, ...rest} = test);
-                        return <ComboboxOption key={place_id}
-                                             value={description}/>;
-                    })}
-                </ComboboxPopover>
-            </Combobox>
-        </div>;
-}
 
 export {MapsWindow};
