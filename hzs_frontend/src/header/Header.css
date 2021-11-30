@@ -1,46 +1,57 @@
 #header{
     margin: 0;
     padding: 0;
-    background-color: rgb(17, 17, 219);
+    background-color: rgb(179, 61, 61);
     width: 100%;
-    height: fit-content;
-    position: sticky;
+    height: 100px;
+    position: relative;
     display: block;
 }
 
 #container{
     width: 80%;
     margin-left: 10%;
-    padding: 15px;
+    padding: 5px;
 }
 
 #title{
-    font-size: 200%;
+    font-size: 50px;
     font-family: 'Times New Roman', Times, serif;
     color: rgb(223, 208, 10);
     text-align: center;
-    border-top: rgb(89, 99, 3) double 5px;
-    border-bottom: rgb(89, 99, 3) double 5px;
 }
 
 #header nav{
     display: block;
+    position: relative;
     width: 100%;
     height: fit-content;
-    margin: 15px 0 0 0;
-    padding: 0;
+    margin: 0 0 0 0;
+    padding: 5px;
+    background-color: rgb(110, 105, 105);
 }
 
-#header nav div a{
+#header nav div{
     position: relative;
-    display: inline-box;
-    margin: 0;
+    display: inline-block;
+    margin: 0 2px 0 2px;
     padding: 0;
-    width: 25%;
+    width: 24%;
     text-align: center;
+    background-color: rgb(214, 96, 96);
+}
+
+#header nav div:hover{
+    width: 26%;
+    font-weight: bold;
+    text-decoration: underline;
+    background-color: rgb(16, 188, 245);
+    color: #fff;
+    transition: 0.2s;
 }
 
 #header nav a{
+    text-decoration: none;
     color: black;
     font-size: 200%;
     font-family: 'Times New Roman', Times, serif;

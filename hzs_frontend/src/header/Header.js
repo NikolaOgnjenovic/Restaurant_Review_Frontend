@@ -8,9 +8,9 @@ const Header = ()=>{
             </div>
             <nav>
                 <div><a href="/profil">Profil</a></div> 
-                <div><a href="/about">About</a></div>
-                <div><a href="/grafik">Grafik</a></div>
+                <div><a href="/profil">Mapa</a></div>
                 <div><a href="/lista">Top lista</a></div>
+                <div><a href="/about">O nama</a></div>
             </nav>
         </div>
     )
