@@ -7,14 +7,14 @@ body{
     font-family: sans-serif;
   }
   .registrationbox{
-    width: 320px;
-    height: 420px;
+    width: 40%;
+    height: 500px;
     background: rgba(0,0,0,.5) ;
     color: #fff;
     top: 50%;
-    left:50%;
-    position: absolute;
-    transform: translate(-50%,-50%);
+    left:30%;
+    position: relative;
+    /*transform: translate(-50%,-50%);*/
     box-sizing: border-box;
     padding: 30px;
     animation-name: animacija1;

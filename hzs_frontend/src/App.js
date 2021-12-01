@@ -42,6 +42,7 @@ const App = () => {
                         <Route path="/mape" element={<MapPage/>}/>
                         <Route path="/list" element={<ReviewList/>}/>
                         <Route path="/login" element={window.sessionStorage.getItem("username") ? <Login/> : <Registracija/>}/>
+                        <Route path="/registracija" element={<Registracija/>}/>
                     </Routes>
                 </BrowserRouter>
             </div>

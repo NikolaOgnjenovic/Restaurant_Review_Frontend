@@ -56,6 +56,10 @@ const Login = () => {
           setErrorUnet(false);
           setErrorUsernamePassword(false);
           setSubmitted(true);
+
+          window.sessionStorage.setItem("loggedUsername", username);
+          window.sessionStorage.setItem("loggedPassword", password);
+          window.location = "https://hrana-u-blizini.herokuapp.com/";
         }
     }
 
@@ -98,7 +102,7 @@ const Login = () => {
                <input onChange={handlePassword} type="password" value={password} name="" placeholder="Unesite sifru"/>
                <input onClick={handleSubmit} type="submit" name="" value="Ulogujte se"/>
                <a href='#'>Izgubili ste lozinku?</a><br/>
-               <a href='#'>Nemate nalog?</a>
+               <a href='/registracija'>Nemate nalog?</a>
              </form>
               <div className="message" style={{background: submitted ? 'green':'red'}}>
                 {successMessage()}

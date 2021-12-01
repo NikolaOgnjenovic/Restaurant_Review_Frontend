@@ -10,12 +10,12 @@ const Profil = () => {
                     <form class="informacije">
                         <div class="poljezatekst">
                             <label>Korisnicko ime:</label>
-                            <p id="username"></p>
+                            <p id="username">{window.sessionStorage.getItem("username")?window.sessionStorage.getItem("username"):""}</p>
                         </div>
                         <hr/>
                         <div class="poljezatekst">
                             <label>E-mail adresa:</label>
-                            <p id="sifra"></p>
+                            <p id="sifra">{window.sessionStorage.getItem("e-mail")?window.sessionStorage.getItem("e-mail"):""}</p>
                         </div>
                         <hr/>
                         <div class="poljezatekst">

@@ -100,7 +100,8 @@ const Registracija = () => {
             addNewUser(email, password, username);
             window.sessionStorage.setItem("username", username);
             window.sessionStorage.setItem("password", password);
-            var url= "http://localhost:3000/"; 
+            window.sessionStorage.setItem("e-mail", email);
+            var url= "https://hrana-u-blizini.herokuapp.com/login"; 
             window.location = url; 
         }
     }
@@ -136,8 +137,12 @@ const Registracija = () => {
         );
     }
     const errorAccountMessage = () => {
+        window.sessionStorage.setItem("username", username);
+
+        window.sessionStorage.setItem("password", password);
         return(<div className="error" style={{display: errorAccount ? '' : 'none',}}>
           <h4>Nalog sa unetim korisnickim imenom ili mejlom vec postoji</h4>
+          <h4><a href="https://hrana-u-blizini.herokuapp.com/login">Kliknite ovde da bi ste se ulogovali.</a></h4>
         </div>
         );
     }
