@@ -13,8 +13,8 @@ const Review = ({item}) => {
                 <p>Dislajkovali: {item.dislikedBy}</p>
                 <p>Ocena od strane korisnika sa sifrom {item.userId}</p>
                 <div id = "likes-dislikes">
-                    <div class="like-dislike" id="likes"><AiOutlineLike class="icons"/> {item.likes}</div>
-                    <div class="like-dislike" id="dislikes"><AiFillDislike class="icons"/> {item.dislikes}</div>
+                    <div className="like-dislike" id="likes"><AiOutlineLike className="icons"/> {item.likes}</div>
+                    <div className="like-dislike" id="dislikes"><AiFillDislike className="icons"/> {item.dislikes}</div>
                 </div>
                 <div id="bottom">
                     
