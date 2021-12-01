@@ -1,0 +1,125 @@
+
+#flex-container{
+    display: flex;
+    flex-wrap: wrap;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    margin: 5% 5%;
+}
+
+#map_win_container{
+    margin: 0 15px 0 15px;
+    min-width: 300px;
+    width: 45%;
+    z-index: 0;
+}
+
+#review_form{
+    vertical-align: middle;
+    margin: 5px 15px 5px 15px;
+    width: 90%;
+    max-width: 500px;
+    z-index: 0;
+}
+
+#form_container{
+    width: 90%;
+    min-width: 300px;
+    height: 500px;
+    /*max-height: fit-content;*/
+    background-color: rgba(187, 104, 104, 0.685);
+    border: 2px double rgb(41, 7, 7);
+    border-radius: 5px;
+    margin-left: 10%;
+}
+
+#form_container h3{
+    text-decoration: underline;
+    text-align: center;
+    color: white;
+    font-size: 25px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#form_container h5{
+    text-align: center;
+    color: white;
+    font-size: 20px;
+}
+
+#form_container h5{
+    text-align: center;
+    color: white;
+    font-size: 20px;
+}
+
+#form_container button{
+    text-align: center;
+    border: none;
+    background-color:rgb(173, 173, 173);
+    font-size: 20px;
+    display: inline-block;
+    position: relative;
+    width: 40%;
+    height: 50px;
+    margin: 0 5% 0 5%;
+    border-radius: 5px;
+}
+
+#form_wrapper{
+    width: 100%;
+    position: relative;
+    display: block;
+}
+
+form {
+    text-align: center;
+    display: block;
+    position: relative;
+    width: 90%;
+    height: 320px;
+    background-color: rgba(150, 92, 92, 0.685);;
+    border: 2px solid gray;
+    border-radius: 5px;
+    margin-left: 15px;
+    padding: 10px;
+}
+
+form label{
+    color: white;
+    font: 150%;
+}
+
+form input{
+    border: none;
+    border-bottom: 2px solid rgb(165, 165, 165);;
+    background-color: rgba(0, 0, 0, 0.37);
+    padding: 5px;
+}
+
+form label{
+    margin-bottom: 15px;
+}
+
+form textarea{
+    margin: 0;
+    border: 2px solid rgb(165, 165, 165);
+    background-color: rgba(0, 0, 0, 0.37);
+}
+
+form div{
+    margin: 5px 0 20px 0;
+}
+
+form input[type="submit"]{
+    border: none;
+    border-radius: 10px;
+    width: 30%;
+    height: 40px;
+    background-color:rgb(180, 180, 180);
+    color: black;
+}
+
+#list{
+    position: relative;
+}
