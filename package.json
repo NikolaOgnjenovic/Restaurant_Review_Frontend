@@ -1,12 +1,9 @@
 {
   "name": "hzs_frontend",
   "version": "0.1.0",
-  "engines":{
-    "node":"6.11.1"
-  },
   "private": true,
   "dependencies": {
-    "@reach/combobox": "*",
+    "@reach/combobox": "^0.16.4",
     "@react-google-maps/api": "*",
     "@testing-library/jest-dom": "*",
     "@testing-library/react": "*",
@@ -14,11 +11,11 @@
     "google-maps-react": "*",
     "react": "*",
     "react-dom": "*",
-    "react-icons": "*",
+    "react-icons": "^4.3.1",
     "react-redux": "*",
-    "react-router-dom": "*",
+    "react-router-dom": "^6.0.2",
     "react-scripts": "*",
-    "use-places-autocomplete": "*",
+    "use-places-autocomplete": "^1.10.1",
     "web-vitals": "*"
   },
   "scripts": {
