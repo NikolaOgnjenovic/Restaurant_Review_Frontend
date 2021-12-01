@@ -93,7 +93,6 @@ const Login = () => {
     return(
         <React.Fragment>
           <div class="loginbox pozadina">
-            <img src="slike/avataricon.png" class="avatar"/>
              <h1>Ulogujte se</h1>
              <form>
                <p>Korisnicko ime</p>

@@ -5,11 +5,11 @@ header
 }
 
 .logo{
-    width: 90px;
-    height: 90px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
-    position: absolute;
-    left: calc(50% + 150px);
+    position: relative;
+    left: calc(50% - 30px);
     animation-name: obrtanje;
     animation-duration: 8s;
     animation-iteration-count: infinite;
@@ -19,22 +19,9 @@ header
 }
 
 #title{
-    text-align: center;
     position: relative;
-    display: block;
-    height: fit-content;
     width: 100%;
-    margin-bottom: 35px;
-}
-
-#title h1{
-    display: inline-block;
-    vertical-align: text-bottom;
-}
-
-#title h1{
-    display: inline-block;
-    vertical-align: top
+    margin-bottom: 15px;
 }
 
 nav{
@@ -48,32 +35,34 @@ nav{
 }
 nav ul{
     display: flex;
+    width: 100%;
     margin: 0;
-    padding: 0 430px;
+    padding: 0;
     float: center;
 }
 nav ul li{
-   list-style: none;
+    width: 20%;
+    list-style: none;
+    margin: 0 45px 0 45px;
 }
 nav ul li a{
     display: block;
     color: #fff;
-    padding: 0 45px;
+    /*padding: 0 45px;*/
     text-decoration: none;
     text-transform: uppercase;
     font-weight: bold;
     line-height: 50px;
-    position: relative;
+    /*position: relative;*/
     text-align: center;
     transition-duration: 0.5s;
 }
-nav ul li a:hover,
-nav ul li a.active
+nav ul li a:hover
 {
     background: #f00;
 }
  header h1 {
-     color:#fff;
+     color:rgb(0, 0, 0);
      font-size: 40px;
      font-weight: bold;
      text-align:center;

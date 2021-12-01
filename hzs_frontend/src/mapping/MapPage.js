@@ -80,7 +80,7 @@ const Form = ({place}) => {
     const sessinoUsername = window.sessionStorage.getItem("username");
     return (
         <div id="form_wrapper">
-            <form onSubmit={()=>{
+            <form onSubmit={(event)=>{
                                 console.log("=============================");
                                 console.log("Place",place);
                                 console.log("=============================");
