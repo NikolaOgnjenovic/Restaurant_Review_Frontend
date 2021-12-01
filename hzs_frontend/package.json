@@ -13,7 +13,7 @@
     "react-dom": "*",
     "react-icons": "^4.3.1",
     "react-redux": "*",
-    "react-router-dom": "*",
+    "react-router-dom": "^6.0.2",
     "react-scripts": "*",
     "use-places-autocomplete": "^1.10.1",
     "web-vitals": "*"

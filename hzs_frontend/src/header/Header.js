@@ -9,11 +9,11 @@ const Header = ()=>{
             <h1>Hrana blizu vas</h1>
             <nav>
                 <ul>
-                    <li><a href='#' class="active">Profil</a></li>
-                    <li><a href='#'>About</a></li>
-                    <li><a href='#'>Grafikon</a></li>
-                    <li><a href='#'>Lista</a></li>
-                    <li><a href='#'>Ulogujte se</a></li>
+                    <li><a href='/profil' class="active">Profil</a></li>
+                    <li><a href='/about'>About</a></li>
+                    <li><a href='/mape'>Mape</a></li>
+                    <li><a href='/lista'>Lista</a></li>
+                    <li><a href='/login'>Ulogujte se</a></li>
                 </ul>
             </nav>
         </header>

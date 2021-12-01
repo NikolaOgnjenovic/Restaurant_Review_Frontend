@@ -11,7 +11,10 @@ const Login = () => {
       const getData = () => {
         fetch(BASE_URL)
           .then((response) => response.json())
-          .then((data) => setUsers(data));
+          .then((data) => {
+            setUsers(data);
+            console.log(data);
+          });
       };
       getData();
     }, []);
@@ -73,16 +76,17 @@ const Login = () => {
       </div>
       );
     }
-
-    return(
-        <>
-<<<<<<< Updated upstream
-          <div class="loginbox pozadina">
-            <img src="slike/avataricon.png" class="avatar"/>
-=======
+    /**
+     * 
+     * =======
           <div className="loginbox">
             <img src={avatar} className="avatar"/>
 >>>>>>> Stashed changes
+     */
+    return(
+        <>
+          <div class="loginbox pozadina">
+            <img src="slike/avataricon.png" class="avatar"/>
              <h1>Ulogujte se</h1>
              <form>
                <p>Korisnicko ime</p>

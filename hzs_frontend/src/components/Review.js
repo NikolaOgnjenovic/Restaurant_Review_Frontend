@@ -25,7 +25,6 @@ const Review = ({item}) => {
             <div id="bottom">
 
             </div>
-        </div>
         </>
     )
 }

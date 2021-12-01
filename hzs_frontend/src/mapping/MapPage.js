@@ -130,15 +130,3 @@ const onSubmit=(place)=>{
 }
 
 export default MapPage;
-/*
-{
-    "description": "string",
-    "foodCost": 0,
-    "placeId": "string",
-    "title": "string",
-    "userEmail": "string"
-  }*/
-
-  /*
-  <button id="like"><AiFillLike/></button>
-                    <button id="dislike"><AiFillDislike/></button> */
