@@ -1,16 +1,8 @@
-body{
-    margin: 0;
-    padding: 0;
-    background: url(profil_pozadina2.jpg);
-    background-size: cover;
-    background-position: center;
-    font-family: sans-serif;
-}
 .profilebox{
     width: 650px;
-    height: 320px;
+    height: 450px;
     background: rgba(0,0,0,.5) ;
-    position: absolute;
+    position: relative;
     box-sizing: border-box;
     top: 25%;
     left: 33%;
