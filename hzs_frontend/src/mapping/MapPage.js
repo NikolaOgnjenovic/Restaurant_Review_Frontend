@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Header from "../header/Header";
 import { MapsWindow } from "./Maps";
-import ReviewList from "../components/ReviewList.js";
+import Reviews from "../components/Reviews";
 
 import './MapPage.css';
 
@@ -28,7 +28,7 @@ const MapPage = () =>{
                 <div id="review_form"></div>
             </div>
             <div id="list">
-                <ReviewList/>
+                <Reviews/>
             </div>
         </React.Fragment>
     );
