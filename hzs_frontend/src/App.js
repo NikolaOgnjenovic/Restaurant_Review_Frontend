@@ -31,16 +31,20 @@ import Registracija from './registration/Registratracija';
 const App = () => {
     return(
         <React.Fragment>
+            <div className="container">
             <Header></Header>
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={<Profil/>}/>
-                    <Route path="/about" element={<About/>}/>
-                    <Route path="/mape" element={<MapPage/>}/>
-                    <Route path="/list" element={<ReviewList/>}/>
-                    <Route path="/login" element={window.sessionStorage.getItem("username") ? <Login/> : <Registracija/>}/>
-                </Routes>
-            </BrowserRouter>
+            </div>
+            <div className="container">
+                <BrowserRouter>
+                    <Routes>
+                        <Route path="/" element={<Profil/>}/>
+                        <Route path="/about" element={<About/>}/>
+                        <Route path="/mape" element={<MapPage/>}/>
+                        <Route path="/list" element={<ReviewList/>}/>
+                        <Route path="/login" element={window.sessionStorage.getItem("username") ? <Login/> : <Registracija/>}/>
+                    </Routes>
+                </BrowserRouter>
+            </div>
         </React.Fragment>
     );
 }

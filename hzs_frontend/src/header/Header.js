@@ -5,8 +5,10 @@ const Header = ()=>{
     return(
         <>
         <header>
-            <img src={logo} class="logo"/>
-            <h1>Hrana blizu vas</h1>
+            <div id="title">
+                <h1>Hrana blizu vas</h1>
+                <img src={logo} width="50%" class="logo"/>
+            </div>
             <nav>
                 <ul>
                     <li><a href='/'>Profil</a></li>
