@@ -1,0 +1,45 @@
+{
+  "name": "hzs_frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@reach/combobox": "^0.16.4",
+    "@react-google-maps/api": "*",
+    "@testing-library/jest-dom": "*",
+    "@testing-library/react": "*",
+    "@testing-library/user-event": "*",
+    "google-maps-react": "*",
+    "react": "*",
+    "react-dom": "*",
+    "react-icons": "^4.3.1",
+    "react-redux": "*",
+    "react-router-dom": "^6.0.2",
+    "react-scripts": "*",
+    "use-places-autocomplete": "^1.10.1",
+    "web-vitals": "*"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
