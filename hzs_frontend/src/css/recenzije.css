@@ -4,9 +4,8 @@
   background: rgba(0,0,0,.5) ;
   color: #fff;
   top: 35%;
-  left:50%;
   position: absolute;
-  transform: translate(-50%,-50%);
+  /*transform: translate(-50%,-50%);*/
   box-sizing: border-box;
   padding: 20px;
   animation-name: animacija1;

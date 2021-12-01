@@ -7,7 +7,7 @@ const Header = ()=>{
         <header>
             <div id="title">
                 <h1>Hrana blizu vas</h1>
-                <img src={logo} width="50%" class="logo"/>
+                <img src={logo} class="logo"/>
             </div>
             <nav>
                 <ul>

@@ -18,13 +18,8 @@ const Review = ({item}) => {
                     <div className="like-dislike" id="likes"><AiOutlineLike className="icons" /> {item.likes}</div>
                     <div className="like-dislike" id="dislikes"><AiFillDislike className="icons" /> {item.dislikes}</div>
                 </div>
-                <div id="bottom">
-
-                </div>
             </div>
-            <div id="bottom">
 
-            </div>
         </>
     )
 }

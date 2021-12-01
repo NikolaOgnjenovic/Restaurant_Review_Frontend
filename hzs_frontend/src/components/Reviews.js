@@ -16,7 +16,9 @@ const Reviews = () => {
 
     return(
         <React.Fragment>
-            <ReviewList items={reviews}/>
+            <div id="reviewList">
+              <ReviewList items={reviews}/>
+            </div>
         </React.Fragment>
     )
 }
