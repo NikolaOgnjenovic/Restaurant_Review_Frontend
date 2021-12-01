@@ -40,7 +40,7 @@ const App = () => {
                         <Route path="/" element={<Profil/>}/>
                         <Route path="/about" element={<About/>}/>
                         <Route path="/mape" element={<MapPage/>}/>
-                        <Route path="/list" element={<ReviewList/>}/>
+                        <Route path="/list" element={<Reviews/>}/>
                         <Route path="/login" element={window.sessionStorage.getItem("username") ? <Login/> : <Registracija/>}/>
                         <Route path="/registracija" element={<Registracija/>}/>
                     </Routes>

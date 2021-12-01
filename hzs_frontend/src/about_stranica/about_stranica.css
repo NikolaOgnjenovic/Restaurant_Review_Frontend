@@ -6,34 +6,35 @@ body{
   background-position: center;
   font-family: sans-serif;
 }
-div {
-    margin: 10% 5%;
+#about_container, #about_container div {
+    /*margin: 10% 5%;*/
     font-size: 15px;
     color:#fff;
-    text-align: left;
+    text-align: center;
     height: 80%;
     width: 70%;
+    left: 15%;
     background-color: rgba(0,0,0,.7);
     border-radius: 15px;
     padding: 5px 10px;
     position: relative;
 }
-h1{
+#about_container h1{
     color:#fff;
     font-size: 35px;
     font-weight: bold;
 }
-h2{
+#about_container h2{
     color:#fff;
     font-size: 35px;
     font-weight: bold;
 }
-h3{
+#about_container h3{
     color:#fff;
     font-size: 35px;
     font-weight: bold;
 }
-h4{
+#about_container h4{
     color:#fff;
     font-size: 50px;
     font-weight: bold;

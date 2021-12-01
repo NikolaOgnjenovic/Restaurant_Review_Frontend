@@ -14,7 +14,7 @@ const Header = ()=>{
                     <li><a href='/'>Profil</a></li>
                     <li><a href='/about'>About</a></li>
                     <li><a href='/mape'>Mape</a></li>
-                    <li><a href='/lista'>Lista</a></li>
+                    <li><a href='/list'>Lista</a></li>
                     <li><a href='/login'>Ulogujte se</a></li>
                 </ul>
             </nav>

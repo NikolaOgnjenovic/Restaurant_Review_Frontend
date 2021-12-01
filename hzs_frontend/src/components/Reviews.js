@@ -8,7 +8,13 @@ const Reviews = () => {
     useEffect(() => {
         const getData = () => {
           fetch(BASE_URL)
-            .then((response) => response.json())
+            .then((response) => {
+              const t = response.json();
+              console.log("===================");
+              console.log(t);
+              console.log("===================");
+              return t;
+            })
             .then((data) => setReviews(data));
         };
         getData();
