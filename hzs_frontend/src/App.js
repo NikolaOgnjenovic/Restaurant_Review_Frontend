@@ -13,11 +13,10 @@ import MapPage from './mapping/MapPage';
 
 import Profil from './profil_stranica/Profil_stranica'
 import About from './about_stranica/About'
+import Registracija from './registration/Registratracija';
 
-const App = () => {
-    return(
-        <React.Fragment>
-            <Header></Header>
+/**
+ * <Header></Header>
             <BrowserRouter>
                 <Routes>
                     <Route path="/profil" element={<Profil/>}/>
@@ -25,6 +24,21 @@ const App = () => {
                     <Route path="/mape" element={<MapPage/>}/>
                     <Route path="/list" element={<ReviewList/>}/>
                     <Route path="/login" element={<Login/>}/>
+                </Routes>
+            </BrowserRouter>
+ */
+
+const App = () => {
+    return(
+        <React.Fragment>
+            <Header></Header>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<Profil/>}/>
+                    <Route path="/about" element={<About/>}/>
+                    <Route path="/mape" element={<MapPage/>}/>
+                    <Route path="/list" element={<ReviewList/>}/>
+                    <Route path="/login" element={window.sessionStorage.getItem("username") ? <Login/> : <Registracija/>}/>
                 </Routes>
             </BrowserRouter>
         </React.Fragment>

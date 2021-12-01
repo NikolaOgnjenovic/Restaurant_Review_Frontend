@@ -1,5 +1,8 @@
+import React from "react";
+
 const About = () => {
     return(
+        <React.Fragment>
         <div>
             <div>
             <h1>Mape:</h1>
@@ -17,6 +20,7 @@ const About = () => {
             <h4>Uzivajte u dobroj hrani!!!</h4>
         </div>
        </div>
+       </React.Fragment>
     )
 }
 

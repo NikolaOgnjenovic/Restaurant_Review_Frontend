@@ -9,7 +9,7 @@ const Header = ()=>{
             <h1>Hrana blizu vas</h1>
             <nav>
                 <ul>
-                    <li><a href='/profil' class="active">Profil</a></li>
+                    <li><a href='/'>Profil</a></li>
                     <li><a href='/about'>About</a></li>
                     <li><a href='/mape'>Mape</a></li>
                     <li><a href='/lista'>Lista</a></li>

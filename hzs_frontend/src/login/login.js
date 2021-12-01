@@ -19,8 +19,11 @@ const Login = () => {
       getData();
     }, []);
 
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const sessionUsername = window.sessionStorage.getItem('username');
+    const sessionPassword = window.sessionStorage.getItem('password');
+
+    const [username, setUsername] = useState(sessionUsername?sessionUsername:'');
+    const [password, setPassword] = useState(sessionPassword?sessionPassword:'');
 
     const [submitted, setSubmitted] = useState(false);
     const [errorUnet, setErrorUnet] = useState(false);
@@ -84,7 +87,7 @@ const Login = () => {
 >>>>>>> Stashed changes
      */
     return(
-        <>
+        <React.Fragment>
           <div class="loginbox pozadina">
             <img src="slike/avataricon.png" class="avatar"/>
              <h1>Ulogujte se</h1>
@@ -103,7 +106,7 @@ const Login = () => {
                 {errorUsernamePasswordMessage()}
               </div>
           </div>
-        </>
+        </React.Fragment>
     );
 }
 

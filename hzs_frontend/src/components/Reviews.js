@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import ReviewList from "./ReviewList.js";
 
 const Reviews = () => {
@@ -15,9 +15,9 @@ const Reviews = () => {
       }, []);
 
     return(
-        <>
+        <React.Fragment>
             <ReviewList items={reviews}/>
-        </>
+        </React.Fragment>
     )
 }
 

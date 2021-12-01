@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 
 import "./registracija_stranica.css";
 
@@ -98,6 +98,10 @@ const Registracija = () => {
             setErrorUnet(false);
             setErrorAccount(false);
             addNewUser(email, password, username);
+            window.sessionStorage.setItem("username", username);
+            window.sessionStorage.setItem("password", password);
+            var url= "http://localhost:3000/"; 
+            window.location = url; 
         }
     }
 
@@ -139,6 +143,7 @@ const Registracija = () => {
     }
     
     return(
+      <React.Fragment>
         <div className="registrationbox">
              <h1>Napravite novi profil<br/>za samo par trenutaka:</h1>
              <form>
@@ -159,6 +164,7 @@ const Registracija = () => {
                 {errorPasswordMessage()}
               </div>
           </div>
+        </React.Fragment>
     );
 }
 
