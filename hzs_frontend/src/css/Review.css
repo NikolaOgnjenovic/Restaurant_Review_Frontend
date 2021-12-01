@@ -6,6 +6,7 @@
     border: 1px black solid;
     border-radius: 5px;
     /*background: #1c5d7a;*/
+    position: relative;
     display: inline-block;
     margin: 2px;
 }

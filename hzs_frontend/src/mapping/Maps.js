@@ -133,7 +133,7 @@ const MapsWindow = ({onMarkerClick}) => {
                                         setValue(event.target.value);
                                     }}
                                     disabled={!ready}
-                                    placeholder={"Enter address here"} />
+                                    placeholder={"Unesite željenu adresu"} />
                     <ComboboxPopover>
                         {status === "OK" && data.filter(test => isSellingFood(test)).map((place)=>{
                             console.log(place);

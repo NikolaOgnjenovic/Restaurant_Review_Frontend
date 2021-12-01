@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ReactDOM from 'react-dom';
 import Header from "../header/Header";
 import { MapsWindow } from "./Maps";
 import Reviews from "../components/Reviews";
@@ -39,15 +40,18 @@ const MapPage = () =>{
 }
 
 const CreateReview = (place, address) =>{
-    const serverURL = "https://hrana-u-blizini-api.herokuapp.com//reviews";
+    const serverURL = "https://hrana-u-blizini-api.herokuapp.com/reviews/getReviewsByPlaceId";
 
     console.log("Place is : ", place);
     console.log("Address : ",address);
 
+    const addressFormated = `${address[2].long_name}, ${address[1].long_name} ${address[0].long_name}`;
+
     try{
-        fetch(`${serverURL}/`)
+        fetch(`${serverURL}${place.place_id}`)
             .then(({reviews})=>{
                 console.log(reviews);
+                document.getElementById("list").style.display = 'none';
                 {reviews && reviews.map((review)=>{
                     <Review item={review.json()}/>
                 })};
@@ -57,66 +61,84 @@ const CreateReview = (place, address) =>{
     }
 
     const formElement = ()=>{
-        return `<div id="form_container">
-                <h3>${place[0].structured_formatting.main_text}<h3>
-                <h5>${place[0].structured_formatting.secondary_text}</h5>
-                <button id="like"></button>
-                <button><AiFillDislike/></button>
-                </div>`;
+        return (
+            <React.Fragment>
+                <div id="form_container">
+                <h3>{place[0].structured_formatting.main_text}</h3>
+                <h5>{addressFormated}</h5>
+                <div>
+                    <Form place={place}></Form>
+                </div>
+                </div>
+            </React.Fragment>
+            );
+    }
+    ReactDOM.render(formElement(), document.getElementById("review_form"));
+}
+
+const Form = ({place}) => {
+    return (
+        <div id="form_wrapper">
+            <form>
+                <div>
+                <label>Vaše korisničko ime</label><br/>
+                <input id="username" type="text" placeholder=""/><br/>
+                </div>
+                <div>
+                <label> Vaše misljenje: </label><br/>
+                <textarea
+                    id="description"
+                    rows="8"
+                    cols="50" 
+                    placeholder="Hrana je bila izvrsna!"
+                />
+                </div>
+                <div>
+                <label> Cena jela: </label><br/>
+                <input tyep="text" placeholder="Koliko vas je koštao obrok" id="foodCost"/>
+                </div>
+                <div>
+                    <input type="submit" value="Pošalji recenziju"
+                            onSubmit={()=>{
+                                onSubmit(place);
+                            }}/>
+                </div>
+            </form>
+        </div>
+    );
+}
+
+const onSubmit=(place)=>{
+    const postURL = "https://hrana-u-blizini-api.herokuapp.com/reviews/";
+    const getUserEmailURL = `https://hrana-u-blizini-api.herokuapp.com/user/${document.getElementById("username").value()}/getUser`;
+    const review = {
+        description: document.getElementById("description").value(),
+        foodCost: document.getElementById("foodCost").value(),
+        placeId: place.place_id,
+        title: place[0].structured_formatting.main_text,
+        userEmail: fetch(getUserEmailURL).then((data)=>data.json()).then((user)=>user.email)
+    }
+    const requestOptions = {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify(review)
     }
 
-
-    document.getElementById("review_form").innerHTML = formElement();
+    fetch(postURL, requestOptions)
+        .then((data)=>data.json())
+        .then((response)=>console.log(response));
 }
 
 export default MapPage;
+/*
+{
+    "description": "string",
+    "foodCost": 0,
+    "placeId": "string",
+    "title": "string",
+    "userEmail": "string"
+  }*/
 
-
-/**
- * {
-    "description": "Skroz Dobra Pekara, Masarikova, Šabac, Serbia",
-    "matched_substrings": [
-        {
-            "length": 5,
-            "offset": 0
-        }
-    ],
-    "place_id": "ChIJj28MxPzKW0cRLypGHDf4SBc",
-    "reference": "ChIJj28MxPzKW0cRLypGHDf4SBc",
-    "structured_formatting": {
-        "main_text": "Skroz Dobra Pekara",
-        "main_text_matched_substrings": [
-            {
-                "length": 5,
-                "offset": 0
-            }
-        ],
-        "secondary_text": "Masarikova, Šabac, Serbia"
-    },
-    "terms": [
-        {
-            "offset": 0,
-            "value": "Skroz Dobra Pekara"
-        },
-        {
-            "offset": 20,
-            "value": "Masarikova"
-        },
-        {
-            "offset": 32,
-            "value": "Šabac"
-        },
-        {
-            "offset": 39,
-            "value": "Serbia"
-        }
-    ],
-    "types": [
-        "bakery",
-        "food",
-        "point_of_interest",
-        "store",
-        "establishment"
-    ]
-}
- */
+  /*
+  <button id="like"><AiFillLike/></button>
+                    <button id="dislike"><AiFillDislike/></button> */
