@@ -1,6 +1,9 @@
 {
   "name": "hzs_frontend",
   "version": "0.1.0",
+  "engines":{
+    "node":6.11.1,
+  },
   "private": true,
   "dependencies": {
     "@reach/combobox": "*",
