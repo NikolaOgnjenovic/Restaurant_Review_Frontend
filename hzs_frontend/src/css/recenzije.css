@@ -1,0 +1,29 @@
+.recenzija{
+  width: 90%;
+  height: 40%;
+  background: rgba(0,0,0,.5) ;
+  color: #fff;
+  top: 35%;
+  left:50%;
+  position: absolute;
+  transform: translate(-50%,-50%);
+  box-sizing: border-box;
+  padding: 20px;
+  animation-name: animacija1;
+  animation-duration: 20s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+}
+@keyframes animacija1{
+    0%  {background-color:rgba(0,0,0,.5);}
+    10% {background-color:rgba(0,0,0,.4);}
+    20% {background-color:rgba(0,0,0,.5);}
+    30% {background-color:rgba(0,0,0,.4);}
+    40% {background-color:rgba(0,0,0,.5);}
+    50% {background-color:rgba(0,0,0,.4);}
+    60% {background-color:rgba(0,0,0,.5);}
+    70% {background-color:rgba(0,0,0,.4);}
+    80% {background-color:rgba(0,0,0,.5);}
+    90% {background-color:rgba(0,0,0,.4);}
+    100% {background-color:rgba(0,0,0,.5);}
+}
