@@ -22,6 +22,10 @@ const Review = ({item}) => {
 
                 </div>
             </div>
+            <div id="bottom">
+
+            </div>
+        </div>
         </>
     )
 }
