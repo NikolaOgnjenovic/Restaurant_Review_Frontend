@@ -1,7 +1,7 @@
 body{
   margin: 0;
   padding: 0;
-  /**background: url(hranapozadina3.jpg);*/
+  background: url(slike/hranapozadina3.jpg);
   background-size: cover;
   background-position: center;
   font-family: sans-serif;
@@ -22,7 +22,6 @@ body{
   animation-iteration-count: infinite;
   animation-fill-mode: forwards;
   border-radius: 15px;
-  border: 5px solid rgba(0,0,0,0.5);
 }
 @keyframes animacija1{
   0%  {background-color:rgba(0,0,0,.5);}
@@ -83,7 +82,6 @@ h1{
   color: #fff;
   font-size: 18px;
   border-radius: 20px;
-  border: 5px solid rgba(0,0,0,0.5);
   transition-duration: 0.5s;
 }
 .loginbox input[type="submit"]:hover
@@ -94,14 +92,29 @@ h1{
 }
 .loginbox a{
   text-decoration: none;
-  font-size: 12px;
+  font-size: 10px;
   line-height: 20px;
   color: lightblue;
   transition-duration: 1s;
 }
 .loginbox a:hover
 {
-  color: rgb(243, 243, 59);
+  color: #ffc;
   line-height: 30px;
   font-size: 15px;
+}
+
+.success {
+  
+}
+
+.error {
+  
+}
+
+.message {
+  margin-top: 45px;
+  text-align: center;
+  border: 1px black solid;
+  border-radius: 5px;
 }
