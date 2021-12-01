@@ -25,7 +25,6 @@
 }
 
 #search_wrapper input{
-    margin-left: ;
     font-size: 20px;
     width: 300px;
     height: 25px;
@@ -38,6 +37,6 @@ reach-portal div{
 
 reach-portal div li{
     font-size: 20px;
-    text-decoration: none;
+    list-style: none;
 }
 
