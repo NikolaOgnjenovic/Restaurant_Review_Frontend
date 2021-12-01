@@ -43,7 +43,7 @@ const Login = () => {
 
     return(
         <>
-          <div class="loginbox">
+          <div class="loginbox pozadina">
             <img src="slike/avataricon.png" class="avatar"/>
              <h1>Ulogujte se</h1>
              <form>

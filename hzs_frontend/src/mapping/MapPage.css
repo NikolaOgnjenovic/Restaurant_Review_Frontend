@@ -1,4 +1,32 @@
-#map_win_container{
+
+#flex-container{
     position: relative;
-    display: block;
+    margin: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    grid-template-columns: auto auto;
+}
+
+#map_win_container{
+    margin: 0 15px 0 15px;
+    width: 45%;
+}
+
+#review_form{
+    margin: 0 15px 0 15px;
+    width: 45%;
+}
+
+#form_container{
+    width: 100%;
+    min-width: 300px;
+    height: 500px;
+    /*max-height: fit-content;*/
+    background-color: rgb(141, 97, 97);
+    border: 2px double rgb(41, 7, 7);
+    border-radius: 5px;
+}
+
+#list{
+    position: relative;
 }

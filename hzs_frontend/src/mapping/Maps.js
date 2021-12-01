@@ -35,8 +35,8 @@ const API_KEY = "AIzaSyDonwQpIjVos4IF9zZKajYfXImEpwra5o8";
 const libraries = ["places"];
 
 const mapContainerStyle = {
-    width: "500px",
-    height: "400px"
+    width: "600px",
+    height: "500px"
 };
 
 const center={
@@ -175,7 +175,6 @@ const MapsWindow = ({onMarkerClick}) => {
                                                                   }}/>}
                 </GoogleMap>
             </div>
-            
         </div>
     );
 };

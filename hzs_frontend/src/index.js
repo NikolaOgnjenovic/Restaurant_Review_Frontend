@@ -12,6 +12,7 @@ import MapPage from './mapping/MapPage';
 
 ReactDOM.render(
   <React.StrictMode>
+    <Header></Header>
     <MapPage></MapPage>
   </React.StrictMode>,
   document.getElementById('root')

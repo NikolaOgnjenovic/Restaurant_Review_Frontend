@@ -3,6 +3,8 @@ import Header from "../header/Header";
 import { MapsWindow } from "./Maps";
 import ReviewList from "../components/ReviewList.js";
 
+import './MapPage.css';
+
 const MapPage = () =>{
     const [review, setReview] = useState({
         id: -1,
@@ -19,10 +21,15 @@ const MapPage = () =>{
 
     return(
         <React.Fragment>
-            <div id="map_win_container">
-                <MapsWindow onMarkerClick={CreateReview}></MapsWindow>
+            <div id="flex-container">
+                <div id="map_win_container">
+                    <MapsWindow onMarkerClick={CreateReview}></MapsWindow>
+                </div>
+                <div id="review_form"></div>
             </div>
-            <ReviewList/>
+            <div id="list">
+                <ReviewList/>
+            </div>
         </React.Fragment>
     );
 }
@@ -31,6 +38,12 @@ const CreateReview = (place, address) =>{
     const serverURL = "";
     console.log("Place is : ", place);
     console.log("Address : ",address);
+
+    const formElement = ()=>{
+        return `<div id="form_container"></div>`;
+    }
+
+    document.getElementById("review_form").innerHTML = formElement();
 }
 
 export default MapPage;
